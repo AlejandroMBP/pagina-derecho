@@ -6,8 +6,6 @@
         <div class="row">
           <div class="col-6  text-md-left ">
             <ul>
-
-
               <li class="d-none d-md-inline-block">
                 <p>
                   <i class="fa fa-envelope-o"></i>
@@ -73,7 +71,66 @@
               <router-link to="/">INICIO</router-link>
 
             </li>
-            <li class="menu-item-has-children" @mouseover="showSubMenu('m_informacion')">
+            
+            <!-- menu personalizado para la carrera de derecho -->            
+            <!-- <li v-if="idInstitucion === '11' && idCarrera === '8'" class="" @mouseover="showSubMenu('m_inicio')">
+              <router-link to="/gaceta" style="font-size: 0.75em;">NOSOTROS</router-link>
+
+            </li> -->
+            <li v-if="idInstitucion === '11' && idCarrera === '8'" class="menu-item-has-children" @mouseover="showSubMenu('m_informacion')">
+              <!-- @click="showSubMenu('m_inicio')" -->
+              <router-link to="/about"  style="font-size: 0.7em;">INFORMACION</router-link>
+              <ul class="sub-menu" >
+                <li><a href="#nosotros" @click="click_ma()">SOBRE NOSOTROS</a></li>
+                <li><a href="#atoridades" @click="click_ma()">AUTORIDADES</a></li>
+              </ul>
+            </li>
+
+            
+
+            <!-- menu personalizado para la carrera de derecho -->
+            <li v-if="idInstitucion === '11' && idCarrera === '8'" class="" @mouseover="showSubMenu('m_inicio')">
+              <!-- @click="showSubMenu('m_inicio')" -->
+              <router-link to="/gaceta" style="font-size: 0.75em;">NORMATIVA</router-link>
+
+            </li>
+            
+            <li v-if="idInstitucion === '11' && idCarrera === '8'" class="" @mouseover="showSubMenu('m_inicio')">
+              <!-- @click="showSubMenu('m_inicio')" -->
+              <router-link to="/publicaciones" style="font-size: 0.75em;">OFERTA ACADEMICA</router-link>
+            </li>
+
+            <li v-if="idInstitucion === '11' && idCarrera === '8'" class="menu-item-has-children" @mouseover="showSubMenu('m_link')">
+              <!-- @click="showSubMenu('m_link')" -->
+              <a href="#" style="font-size: 0.7em;">SUYAY</a>
+              <ul class="sub-menu" :style="[m_link ? 'display:block' : 'display:none']" >
+                <li v-for="(link, id_link) of Links" :key="id_link">
+                  <a v-if="link.ei_tipo === 'INSCRIPCIONES'" :href="link.ei_link" target="_blank" :title="link.ei_tipo">
+                    {{ link.ei_nombre.toUpperCase() }}
+                  </a>
+                </li>
+              </ul>
+            </li>
+
+            <li v-if="idInstitucion === '11' && idCarrera === '8'" class="" @mouseover="showSubMenu('m_inicio')">
+              <!-- @click="showSubMenu('m_inicio')" -->
+              <router-link to="/investigacion" style="font-size: 0.75em;">INVESTIGACION</router-link>
+
+            </li>      
+
+            <li v-if="idInstitucion === '11' && idCarrera === '8'" class="menu-item-has-children" @mouseover="showSubMenu('m_link')">
+              <!-- @click="showSubMenu('m_link')" -->
+              <a href="#" style="font-size: 0.6em;">BIBLIOTECA</a>
+              <ul class="sub-menu" :style="[m_link ? 'display:block' : 'display:none']" >
+                <li v-for="(link, id_link) of Links" :key="id_link">
+                  <a v-if="link.ei_tipo === 'BIBLIOTECA'" :href="link.ei_link" target="_blank" :title="link.ei_tipo">
+                      {{ link.ei_nombre === 'Biblioteca Koha' ? 'BIBLIOTECA DERECHO' : link.ei_nombre.toUpperCase() }}
+                  </a>
+                </li>
+              </ul>
+            </li>
+
+            <li v-if="idInstitucion != '11' && idCarrera != '8'" class="menu-item-has-children" @mouseover="showSubMenu('m_informacion')">
               <!-- @click="showSubMenu('m_inicio')" -->
               <router-link to="/about">INFORMACION</router-link>
               <ul class="sub-menu" :style="[m_informacion ? 'display:block' : 'display:none']">
@@ -84,7 +141,7 @@
               </ul>
             </li>
 
-            <li class="menu-item-has-children" @mouseover="showSubMenu('m_conv')">
+            <li v-if="idInstitucion != '11' && idCarrera != '8'" class="menu-item-has-children" @mouseover="showSubMenu('m_conv')">
               <!-- @click="showSubMenu('m_conv')" -->
               <a href="#">COMUNICADOS</a>
               <ul class="sub-menu" :style="[m_conv ? 'display:block' : 'display:none']">
@@ -97,7 +154,7 @@
 
             </li>
 
-            <li class="menu-item-has-children" @mouseover="showSubMenu('m_mas')">
+            <li v-if="idInstitucion != '11' && idCarrera != '8'" class="menu-item-has-children" @mouseover="showSubMenu('m_mas')">
               <!-- @click="showSubMenu('m_mas')" -->
               <a href="#">MAS</a>
               <ul class="sub-menu" :style="[m_mas ? 'display:block' : 'display:none']">
@@ -129,7 +186,7 @@
                 </li>
               </ul>
             </li>
-            <li class="menu-item-has-children" @mouseover="showSubMenu('m_link')">
+            <li v-if="idInstitucion != '11' && idCarrera != '8'" class="menu-item-has-children" @mouseover="showSubMenu('m_link')">
               <!-- @click="showSubMenu('m_link')" -->
               <a href="#">ENLACES</a>
               <ul class="sub-menu" :style="[m_link ? 'display:block' : 'display:none']">
